@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡単な計算３</title>
+    <script>
+        // このプログラムでは、BMI（ボディマス指数）を計算します
+        // 文字列の入力には関数prompt()を使用する
+        // 変数'weight'に体重データ、'height'に身長データを取り込む
+        // 体重、身長の値をそれぞれ、あるいは両方入れずに'enter'を押下した
+        // ときを考慮して if文で場合分けをする
+        weight = prompt("体重を入力してください(kg) :");
+        height = prompt("身長を入力してください(m) :");
+        if (weight == 0) {
+            alert("体重が入力されていません。");
+        } else {
+            if (height == 0) {
+                alert("身長が入力されていません。");
+            }
+            else {
+                // BMIの計算
+                BMI = weight / (height * height);
+                // そのままだと小数点以下がだらだらと表示されるので
+                // toFixed(小数点以下の桁数)メソッドを使ってきれいな表示にする
+                alert("あなたのBMIは " + BMI.toFixed(2) + " です。");
+                    
+            }
+                
+        }
+        // 問題１
+        // BMIが計算されたときに、if文を使って、BMIが25以上であれば「肥満と判定されました。」
+        // それ以外の時に「肥満ではありません。」と表示を分けるように修正しなさい。
+        // 問題２
+        // BMIが25以上ならば、「肥満と判定されました。」、25から18.5までは「普通です。」
+        // 18.5以下ならば「低体重です。」と表示するように修正しなさい。
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

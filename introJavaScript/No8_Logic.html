@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>複数のif文をまとめる</title>
+    <script>
+        // このプログラムでは、BMI（ボディマス指数）を計算します
+        // 文字列の入力には関数prompt()を使用する
+        // 変数'weight'に体重データ、'height'に身長データを取り込む
+        // 体重、身長の値をそれぞれ、あるいは両方入れずに'enter'を押下した
+        // ときを考慮して if文で場合分けをする
+        weight = prompt("体重を入力してください(kg) :");
+        height = prompt("身長を入力してください(m) :");
+        // 'weight'、'height'のどちらかが入力されていないという条件は演算子'||'(OR)で表現する
+        if ((weight == 0) || (height == 0)) {
+            alert("体重、または、身長が入力されていません。");
+            
+        } else {
+            // BMIの計算
+            BMI = weight / (height * height);
+            // そのままだと小数点以下がだらだらと表示されるので
+            // toFixed(小数点以下の桁数)メソッドを使ってきれいな表示にする
+            alert("あなたのBMIは " + BMI.toFixed(2) + " です。");
+        // 問題１
+        // 下のコードを(BMIが25以上) または(BMIが18.5以下)ならば、「あなたは少し問題があります。」
+        // それ以外は「あなたは普通です。」と表示するように修正しなさい。
+        // 問題２
+        // 条件を「かつ」(AND)でまとめる場合は演算子'&&'を使用します。
+        // 下のコードを(BMIが25より小さく) かつ(BMIが18.5より大きい)ならば、「あなたは普通です。」
+        // それ以外は「あなたは少し問題があります。」と表示するように修正しなさい。
+        if (BMI >= 25) {
+                alert("あなたは肥満と判定されました！");
+            } else if (BMI > 18.5) {
+                alert("あなたは普通です。");
+            } else {
+                alert("あなたは低体重です。もっと食べなさい！");
+            }                                   
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

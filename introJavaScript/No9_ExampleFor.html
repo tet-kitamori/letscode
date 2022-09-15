@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for文を使った繰り返し</title>
+    <script>
+        // このプログラムでは、BMI（ボディマス指数）を計算します
+
+        // パイロットリストの定義
+        pilots = ["rei", "shinji", "asuka", "toji"];
+        // パイロットの体重,身長
+        heights = [1.65, 1.70, 1.75, 1.80];
+        weights = [50, 65, 77, 60];
+        // BMIとメッセージを格納しておくリストの定義
+        BMI = [];
+        message = [];
+
+        // すべてのパイロットのBMIを計算し結果を表示する
+        for (idx = 0; idx <pilots.length; idx++) {
+            // 体重と身長をリストから取り出す
+            weight = weights[idx];
+            height = heights[idx];
+            // BMIの計算
+            BMI[idx] = weight / (height * height);
+            // BMIの値表示
+            alert(pilots[idx] + "のBMIは " + BMI[idx].toFixed(2) + " です。");
+        }
+
+        // 結果を出力する
+        for (idx = 0; idx <pilots.length; idx++) {
+            if ((BMI[idx] >= 25) || (BMI[idx] <= 18.5)) {
+                alert(pilots[idx] + "は体重に問題があります！");
+            } else {
+                alert(pilots[idx] + "は普通です。");
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

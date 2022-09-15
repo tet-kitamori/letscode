@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡単な計算１</title>
+    <script>
+        // このプログラムでは、BMI（ボディマス指数）を計算します
+        // 文字列の入力には関数prompt()を使用する
+        // 変数'weight'に体重データ、'height'に身長データを取り込む
+        weight = prompt("体重を入力してください(kg) :");
+        height = prompt("身長を入力してください(m) :");
+        // BMIの計算
+        BMI = weight / (height * height);
+        alert("あなたのBMIは " + BMI + " です。");
+        // 注記
+        // 普通にデータを入力してちゃんと計算結果が出力されるのを確認する
+        // だけではなく、体重、身長の値をそれぞれ、あるいは両方入れずに
+        // 'enter'を押下したときにどうなるかも確認してください。
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Property</title>
+    <script>
+        function change() {
+            var s = document.getElementById("small").value;
+            document.getElementById("large").value = s.toUpperCase();
+            document.getElementById("label").textContent = s.toLowerCase();
+        }
+    </script>
+</head>
+<body>
+    <input id="small" onkeyup="change()" />
+    <input id="large" />
+    <p id="label"></p>
+</body>
+</html>
