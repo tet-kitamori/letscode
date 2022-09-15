@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キーテスト</title>
+    <script type="text/javascript">
+        // キー押下時の処理を指定 
+        document.onkeydown = keydown;
+        // キー押下時の処理の内容
+        function keydown() {
+            // 表示先'target'をid="message"の所にする
+            target = document.getElementById("message");
+            // 押されたキーのコードを表示する
+            target.innerHTML = "Pushed down a key. KeyCode :" + event.keyCode;
+            // 表示先'target'をid="messageShift"の所にする
+            target = document.getElementById("messageShift");
+            if(event.shiftKey == true) {
+                // 押下されたキーがシフトならばメッセージ表示
+                target.innerHTML = "Pushed down the Shift key.";
+            } else {
+                // シフトキーでなければ表示を消す
+                target.innerHTML = "";
+            }
+            target = document.getElementById("messageCtrl");
+            // 表示先'target'をid="messageCtrl"の所にする
+            if(event.ctrlKey == true) {
+                // 押下されたキーがコントロールならばメッセージ表示
+                target.innerHTML = "Pushed down the Ctrl key.";
+            } else {
+                // コントロールキーでなければ表示を消す
+                target.innerHTML = "";
+            }       
+        }
+    </script>
+</head>
+<body>
+    <!--キーが押下されたときに表示するエリアの定義 -->
+    <div>message</div>
+    <div id="message"></div>
+    <div id="messageShift"></div>
+    <div id="messageCtrl"></div>
+</body>
+</html>

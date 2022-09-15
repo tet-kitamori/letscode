@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>バーを表示して落とす</title>
+    <style type="text/css">
+    /* border-collapseは境界をへこませて立体感を与えます */
+    table {
+        border-collapse: collapse;
+    }
+    /* テーブル要素の大きさと境界の線の太さ、種類、色を定義 */
+    table td {
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+    }
+    </style>
+    <script type="text/javascript">
+    // HTMLファイルを読み込んで、最初に実行する処理
+    window.onload = function() {
+        // 20行10列のテーブルを生成する
+        var width = 10;
+        var height = 20;
+        var html = ['<table>'];
+
+        for(var y = 0; y < 20; y++) {
+            html.push('<tr>');
+            for(var i = 0; i < 10; i++) html.push('<td></td>');
+            html.push('</tr>');
+        }
+        html.push('</table>');
+        document.getElementById('view').innerHTML = html.join('');
+
+        // 表要素のひとつひとつを処理につかえるように'cells'という変数を定義
+        // 'td'はcells[0]からcells[199]で指定できるようになる
+        var cells = document.getElementsByTagName('td');
+        // ブロック降下時の位置を記憶するための変数'top'と'top0'を定義
+        var top = 0;
+        var top0 = top; 
+        // 描画する列の位置
+        var left = 3;
+
+        // 降下するブロックを表示する関数
+        var move = function() {
+            // ひとつ前に表示したブロックを消す
+            cells[top0*width + left + 0].style.backgroundColor = '';
+            cells[top0*width + left + 1].style.backgroundColor = '';
+            cells[top0*width + left + 2].style.backgroundColor = '';
+            cells[top0*width + left + 3].style.backgroundColor = '';
+            // 次の位置にブロックを表示する   
+            cells[top*width + left + 0].style.backgroundColor = 'red';
+            cells[top*width + left + 1].style.backgroundColor = 'red';
+            cells[top*width + left + 2].style.backgroundColor = 'red';
+            cells[top*width + left + 3].style.backgroundColor = 'red';
+            // 現在の位置を次にブロックを消す位置にする
+            top0 = top;
+            // 次の表示位置
+            top++;
+            // 次の表示位置が最下段でなければ、1000msecタイマをセット
+            if(top < height) setTimeout(move, 1000);
+        }
+        // 最初の処理（設定等）をした後、関数moveを実行する
+        move();
+    }
+    // 問題
+    // 落ちてくるブロックの色を'red'と'yellow'を交互に変えるように修正する
+    </script>
+</head>
+<body>
+    <!-- ここに'view'というIDの描画領域を定義する -->
+    <div id="view"></div>
+</body>
+</html>

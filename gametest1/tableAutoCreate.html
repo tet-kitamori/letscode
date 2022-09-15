@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>テーブル表示：自動生成</title>
+    <style type="text/css">
+    /* border-collapseは境界をへこませて立体感を与えます */
+    table {
+        border-collapse: collapse;
+    }
+    /* テーブル要素の大きさと境界の線の太さ、種類、色を定義 */
+    table td {
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+    }
+    </style>
+    <script type="text/javascript">
+    // HTMLファイルを読み込んで、最初に実行する処理
+    window.onload = function() {
+        // 作成するテーブルの行数と列数
+        var width = 10;
+        var height = 20;
+        // bodyの'view'という領域に入るテーブルを変数'html'にhtml形式で書く
+        var html = ['<table>'];
+        // html(現在'<table>')に表の中身を追加　20行分繰り返し
+        for(var y = 0; y < 20; y++) {　　
+            // 行の始まりを示す<tr>を追加
+            html.push('<tr>');
+            // 10列分の表要素を作るために<td></td>を10個追加
+            for(var i = 0; i < 10; i++) html.push('<td></td>');
+            // 行の終わりを示す</tr>を追加
+            html.push('</tr>');
+        }
+        // テーブルの終わりを示す</table>を追加
+        html.push('</table>');
+        // 'view'の中身として、変数htmlの中身を入れる
+        document.getElementById('view').innerHTML = html.join('');
+    }
+    </script>
+</head>
+<body>
+    <!-- ここに'view'というIDの描画領域だけを定義する -->
+    <div id="view"></div>
+</body>
+</html>

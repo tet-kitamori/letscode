@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>壁衝突時の改善版</title>
+    <style type="text/css">
+    table {
+        border-collapse: collapse;
+    }
+    table td {
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+    }
+    </style>
+    <script type="text/javascript">
+    // HTMLファイルを読み込んで、最初に実行する処理
+    window.onload = function() {
+        // 移動できる枠の周りにひとつずつ壁を作るために行数と列数を変更
+        var width = 12;
+        var height = 21;
+        var speed = 20;
+        // 壁識別のために変数'fills'を定義する
+        var fills = {};
+        // 21行12列のテーブルを生成する
+        var html = ['<table>'];
+        for(var y = 0; y < height; y++) {
+            html.push('<tr>');
+            for(var x = 0; x < width; x++) {
+                if(x == 0 || x == width -1 || y == height - 1) {
+                    // 壁になる箱の色は特別に銀色の色指定をする
+                    html.push('<td style="background-color:silver"></td>');
+                    // 壁識別のために印を残す
+                    fills[x + y*width] = 'silver';
+                } else {
+                    // 壁でなければ色指定なし
+                    html.push('<td></td>');
+                }
+            }
+            html.push('</tr>');
+        }
+        html.push('</table>');
+        document.getElementById('view').innerHTML = html.join('');
+
+        var cells = document.getElementsByTagName('td');
+        var top = 2;
+        var top0 = top;
+        var left = Math.floor(width / 2);
+        var left0 = left;
+        var w = width;
+        // 90度ずつ右回転した時に基準の箱（2個目）以外の３つの箱がどの位置に来るか
+        var angles = [[-1,1,2], [-w,w,w+w], [-2,-1,1], [-w-w,-w,w]];
+        var angle = 0;
+        var angle0 = angle;
+        // パーツ情報を取得するための変数'parts0'を定義し、値は空のリストにする
+        var parts0 = [];
+
+        // 押下したキーを取得する関数と変数を定義
+        var keys = {};
+        document.onkeydown = function(e) {
+            switch((e || event).keyCode) {
+                case 37: keys.left = true; break;
+                case 39: keys.right = true; break;
+                case 38: keys.rotate = true; break;
+            }
+        }
+
+        // 降下するブロックを表示する関数と左右移動をスムーズにする変数'tick'を定義
+        var tick = 0;
+        var move = function() {
+            // 押下したキーを検査して位置情報、角度情報を更新
+            tick++;
+            left0 = left;
+            top0 = top;
+            angle0 = angle;
+            if(keys.left) left--;
+            if(keys.right) left++;
+            if(tick % speed == 0) top++; 
+            if(keys.rotate) angle++;
+            keys = {};
+
+            // パーツ情報を取得する
+            var parts = angles[angle % angles.length];
+            // ４つの箱について壁との衝突検出
+            for(var i = -1; i < parts.length; i++) {
+                // パーツ情報から基準箱からの相対位置を得る。基準箱はoffset=0
+                var offset = parts[i] || 0;
+                // 箱が壁にめり込んでいたら、位置情報、角度情報、パーツ情報を１つ前に戻す
+                if(fills[top*width + left + offset]) {
+                    left = left0;
+                    top = top0;
+                    angle = angle0;
+                    parts = parts0;
+                }
+            }
+            // 前回のパーツ情報をもとに前回のブロック描画を消す
+            for(var i = -1; i < parts0.length; i++) {
+                var offset = parts0[i] || 0;
+                cells[top0*width + left0 + offset].style.backgroundColor = '';
+            }
+            // 今回のパーツ情報を記憶する
+            parts0 = parts;
+            // 新しいパーツ情報をもとにブロックを描画する
+            for(var i = -1; i < parts0.length; i++) {
+                var offset = parts0[i] || 0;
+                cells[top*width + left + offset].style.backgroundColor = 'red';
+            }
+        
+            var info = tick + '(' + left + ',' + top + ')';
+            document.getElementById('info').innerHTML = info;
+            if(top < height) setTimeout(move, 1000/speed);
+        }
+        move();
+    }
+    </script>
+</head>
+<body>
+    <div id="info"></div>
+    <div id="view"></div>
+</body>
+</html>

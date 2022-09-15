@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブロック回転を加える</title>
+    <style type="text/css">
+    table {
+        border-collapse: collapse;
+    }
+    table td {
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+    }
+    </style>
+    <script type="text/javascript">
+    // HTMLファイルを読み込んで、最初に実行する処理
+    window.onload = function() {
+        // 20行10列のテーブルを生成する
+        var width = 10;
+        var height = 20;
+        var speed = 20;
+        var html = ['<table>'];
+        for(var y = 0; y < 20; y++) {
+            html.push('<tr>');
+            for(var i = 0; i < 10; i++) html.push('<td></td>');
+            html.push('</tr>');
+        }
+        html.push('</table>');
+        document.getElementById('view').innerHTML = html.join('');
+
+        var cells = document.getElementsByTagName('td');
+        // 回転したときにブロックが枠外にならないように3段目から始める
+        var top = 2;
+        var top0 = top;
+        // 最初の左右位置は中央にする
+        var left = Math.floor(width / 2);
+        var left0 = left;
+        // 'width'を何回も使うので、プログラムを見やすくするため変数'w'に同じ値を入れる
+        var w = width;
+        // 90度ずつ右回転した時に基準の箱（2個目）以外の３つの箱がどの位置に来るか
+        var angles = [[-1,1,2],[-w,w,w+w], [-2,-1,1], [-w-w,-w,w]];
+        // 最初の角度を0とする（回転キー押下ごとに＋１して、0->1->2->3->4->....と変化）
+        var angle = 0;
+        // パーツ情報を取得するための変数'parts0'を定義し、値は空のリストにする
+        var parts0 = [];
+
+        // 押下したキーを取得する関数と変数を定義
+        var keys = {};
+        document.onkeydown = function(e) {
+            switch((e || event).keyCode) {
+                case 37: keys.left = true; break;
+                case 39: keys.right = true; break;
+                // 上矢印キーを押したら回転キーとして記録する
+                case 38: keys.rotate = true; break;
+            }
+        }
+
+        // 降下するブロックを表示する関数と左右移動をスムーズにする変数'tick'を定義
+        var tick = 0;
+        var move = function() {
+            tick++;
+            left0 = left;
+            if(keys.left && left > 0) left--;
+            if(keys.right && left + 4 < width) left++;
+            // 回転キーが押されていれば、現在の角度＋１
+            if(keys.rotate) angle++;
+            // キーの処理が終わったので押下キーの記録をクリア
+            keys = {};
+            // ひとつ前に描画したブロックを古いパーツ情報から計算しながら消す
+            for(var i = -1; i < parts0.length; i++) {
+                // 4つの箱の位置情報を得る。i=-1の定義がないときoffset=0とする。
+                var offset = parts0[i] || 0;
+                // 箱の色を消す
+                cells[top0*width + left0 + offset].style.backgroundColor = '';
+            }
+            // 新しいパーツ情報を取得する（4つの箱の相対位置情報がわかる）
+            parts0 = angles[angle % angles.length];
+            // 新しい位置にブロックを描画する
+            for(var i = -1; i < parts0.length; i++) {
+                var offset = parts0[i] || 0;
+                // 箱に色をつける
+                cells[top*width + left + offset].style.backgroundColor = 'red';
+            }
+            top0 = top;
+            if(tick % speed == 0) top++;
+            var info = tick + '(' + left + ',' + top + ')';
+            document.getElementById('info').innerHTML = info;
+            if(top < height) setTimeout(move, 1000/speed);
+        }
+        move();
+    }
+    </script>
+</head>
+<body>
+    <div id="info"></div>
+    <div id="view"></div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブロックの左右移動</title>
+    <style type="text/css">
+    table {
+        border-collapse: collapse;
+    }
+    table td {
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+    }
+    </style>
+    <script type="text/javascript">
+    // HTMLファイルを読み込んで、最初に実行する処理
+    window.onload = function() {
+        // 20行10列のテーブルを生成する
+        var width = 10;
+        var height = 20;
+        var html = ['<table>'];
+        for(var y = 0; y < 20; y++) {
+            html.push('<tr>');
+            for(var i = 0; i < 10; i++) html.push('<td></td>');
+            html.push('</tr>');
+        }
+        html.push('</table>');
+        document.getElementById('view').innerHTML = html.join('');
+
+        // 表要素のひとつひとつを処理につかえるように'cells'という変数を定義
+        var cells = document.getElementsByTagName('td');
+        // ブロック降下時の位置を記憶するための変数'top'と'top0'を定義
+        var top = 0;
+        var top0 = top;
+        // ブロックの左右の位置を記憶するための変数'left'と'left0'を定義
+        var left = 0;
+        var left0 = left;
+
+        // 押下したキーを取得する関数と変数を定義
+        var keys = {};
+        document.onkeydown = function(e) {
+            switch((e || event).keyCode) {
+                case 37: keys.left = true; break;
+                case 39: keys.right = true; break;
+            }
+        }
+
+        // 降下するブロックを表示する関数
+        var move = function() {
+            // 現在の左右位置を記憶する
+            left0 = left;
+            // 現在位置と押下されたキーの記録から次の位置を決める
+            if(keys.left && left > 0) left--;
+            if(keys.right && left + 4 < width) left++;
+            // 新しい左右位置を決めたので、押下キーの記録をクリアする
+            keys = {};
+            // ひとつ前に表示したブロックを消す
+            cells[top0*width + left0 + 0].style.backgroundColor = '';
+            cells[top0*width + left0 + 1].style.backgroundColor = '';
+            cells[top0*width + left0 + 2].style.backgroundColor = '';
+            cells[top0*width + left0 + 3].style.backgroundColor = '';       
+            // 次の位置にブロックを表示する   
+            cells[top*width + left + 0].style.backgroundColor = 'red';
+            cells[top*width + left + 1].style.backgroundColor = 'red';
+            cells[top*width + left + 2].style.backgroundColor = 'red';
+            cells[top*width + left + 3].style.backgroundColor = 'red';       
+            // 現在の降下位置を記憶し、次の位置を更新する
+            top0 = top;
+            top++;
+            // 次の表示位置が最下段でなければ、1000msecタイマをセット
+            if(top < height) setTimeout(move, 1000);
+        }
+        // 最初の処理（設定等）をした後、関数moveを実行する
+        move()
+    }
+    </script>
+</head>
+<body>
+    <div id="view"></div>
+</body>
+</html>

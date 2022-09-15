@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブロックの左右移動(Quick)</title>
+    <style type="text/css">
+    table {
+        border-collapse: collapse;
+    }
+    table td {
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+    }
+    </style>
+    <script type="text/javascript">
+    // HTMLファイルを読み込んで、最初に実行する処理
+    window.onload = function() {
+        // 20行10列のテーブルを生成する
+        var width = 10;
+        var height = 20;
+        // 左右移動を検知する一秒あたりの回数'speed'を定義
+        var speed = 20;
+        var html = ['<table>'];
+        html.push('<tr>');
+        for(var y = 0; y < 20; y++) {
+            for(var i = 0; i < 10; i++) html.push('<td></td>');
+            html.push('</tr>');
+        }
+        html.push('</table>');
+        document.getElementById('view').innerHTML = html.join('');
+
+        var cells = document.getElementsByTagName('td');
+        var top = 0;
+        var top0 = top;
+        var left = 0;
+        var left0 = left;
+
+        // 押下したキーを取得する関数と変数を定義
+        var keys = {};
+        document.onkeydown = function(e) {
+            switch((e || event).keyCode) {
+                case 37: keys.left = true; break;
+                case 39: keys.right = true; break;
+            }
+        }
+
+        // 降下するブロックを表示する関数と左右移動をスムーズにする変数'tick'を定義
+        var tick = 0;
+        var move = function() {
+            tick++;
+            left0 = left;
+            if(keys.left && left > 0) left--;
+            if(keys.right && left + 4 < width) left++;
+            keys = {};
+            cells[top0*width + left0 + 0].style.backgroundColor = '';
+            cells[top0*width + left0 + 1].style.backgroundColor = '';
+            cells[top0*width + left0 + 2].style.backgroundColor = '';
+            cells[top0*width + left0 + 3].style.backgroundColor = '';       
+            cells[top*width + left + 0].style.backgroundColor = 'red';
+            cells[top*width + left + 1].style.backgroundColor = 'red';
+            cells[top*width + left + 2].style.backgroundColor = 'red';
+            cells[top*width + left + 3].style.backgroundColor = 'red';       
+            top0 = top;
+            // 一秒に1回だけ降下位置を更新する
+            if(tick % speed == 0) top++;
+            // 変数'tick', 'left', 'top'を表示する
+            var info = tick + '(' + left + ',' + top + ')';
+            document.getElementById('info').innerHTML = info;
+            
+            // 次の表示位置が最下段でなければ、1000msec/speedタイマをセット
+            if(top < height) setTimeout(move, 1000 / speed);
+        }
+        move();
+    }
+    </script>
+</head>
+<body>
+    <div id="info"></div>
+    <div id="view"></div>
+</body>
+</html>
