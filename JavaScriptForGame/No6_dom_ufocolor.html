@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM操作</title>
+    <style>
+        div {
+            color: green;
+        }
+    </style>
+    <script>
+        var colors = ["red", "blue", "yellow", "green"];
+        var index = 0;
+        
+        function changeColor() {
+            document.getElementById("ufo").style.color = colors[index];
+            if (++index >= colors.length) {
+                index = 0;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- UFO表示用div要素 -->
+    <div id="ufo"><(ooo)></div>
+    <!-- 色を変更するためのボタン定義 -->
+    <button onclick="changeColor()">click me</button>
+</body>
+</html>

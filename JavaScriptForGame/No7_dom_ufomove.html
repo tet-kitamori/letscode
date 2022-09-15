@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM操作2</title>
+    <style>
+        /* UFOを表現するdivはブロック要素だから大きさと位置が指定可能 */
+        div {
+            position: absolute;
+            width: 60px;
+            height: 25px;
+            color: green;
+            top: 50px;
+        }
+    </style>
+    <script>
+        // 変数ufoを定義
+        var ufo;
+
+        // 初期化関数
+        function init() {
+            // "keydown"イベント発生時は関数keydown(e)を呼ぶ
+            window.addEventListener("keydown", keydown);
+            // UFOオブジェクト生成しdiv要素と関係づける
+            ufo = new UFO(document.getElementById("ufo"), 100);
+        }
+
+        // キー押下時の処理関数
+        function keydown(e) {
+            if (e.keyCode == 37) {
+                // 左ボタン押下
+                ufo.moveLeft();
+            } else if (e.keyCode == 39) {
+                // 右ボタン押下
+                ufo.moveRight();
+            }
+        }
+
+        // UFOオブジェクトを生成する関数：コンストラクタ
+        function UFO(_elem, _xpos) {
+            // 要素への参照
+            this.elem = _elem;
+            // 要素の最初のｘ位置
+            this.xpos = _xpos;
+            // UFOオブジェクトのメソッドmoveLeft():左移動
+            this.moveLeft = function () {
+                this.xpos -= 10;
+                this.elem.style.left = this.xpos + "px";
+            }
+            // UFOオブジェクトのメソッドmoveRight():右移動
+            this.moveRight = function () {
+                this.xpos += 10;
+                this.elem.style.left = this.xpos + "px";
+            }
+            this.elem.style.left = this.xpos + "px";
+        }
+    </script>
+</head>
+
+<!-- htmlがロードされたらまず関数init()を実行する -->
+<body onload="init()">
+    <!-- UFOを表現する文字列をid="ufo"のdiv要素として定義 -->
+    <div id="ufo"><(ooo)></div>
+</body>
+</html>

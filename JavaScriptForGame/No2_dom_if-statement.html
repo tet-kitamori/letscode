@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM操作</title>
+    <script>
+        function checkEven() {
+            var v = document.getElementById("number").value;
+            var r = document.getElementById("result");
+            if (isNaN(v)) {
+                r.textContent = v + "は数字ではありません";
+            } else {
+                r.textContent = v + "は数字です";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 入力 -->
+    <input id="number" />
+    <!-- ボタン -->
+    <button onclick="checkEven()">入力判定</button>
+    <!-- 結果表示用パラグラフ -->
+    <p id="result"></p>
+</body>
+</html>

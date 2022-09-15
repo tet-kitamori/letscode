@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM操作</title>
+    <script>
+        // リスト要素として文字列"hello"をリストの最後に追加する
+        function insertItem() {
+            // リスト"container"への参照を取得する
+            var container = document.getElementById("container");
+            // リスト要素を作成
+            var item = document.createElement("li");
+            // 文字列"hello"をリストの最後に追加する
+            item.innerText = "hello";
+            container.appendChild(item);
+        }
+
+        // リストが要素を持っていれば最後の要素を削除する
+        function removeItem() {
+            var container = document.getElementById("container");
+            // リストの最後の要素を取得する
+            var item = container.lastChild;
+            if (item) {
+                container.removeChild(item);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 挿入ボタンの宣言：押下されたら関数insertItem()実行 -->
+    <button onclick="insertItem()">insert</button>
+    <!-- 削除ボタンの宣言：押下されたら関数removeItem()実行 -->
+    <button onclick="removeItem()">delete</button>
+    <!-- 挿入する物入れとして順序付きリストを準備 -->
+    <ol id="container"></ol>
+</body>
+</html>

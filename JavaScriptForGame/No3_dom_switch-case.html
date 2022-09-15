@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM操作</title>
+    <script>
+        function keydown(e) {
+            var s = "";
+            switch (e.keyCode) {
+                case 37: s = "左"; break;
+                case 38: s = "上"; break;
+                case 39: s = "右"; break;
+                case 40: s = "下"; break;
+                default: s = "それ以外"; break;
+            }
+            // 結果をid="info"の要素の中身とする
+            document.getElementById("info").textContent = s;
+        }
+
+        // キー押下イベントで実行する関数の宣言
+        window.addEventListener('keydown', keydown);
+    </script>
+</head>
+
+<body>
+    <!-- 押下されたキーを表示するパラグラフ -->
+    <p id="info"></p>
+</body>
+</html>

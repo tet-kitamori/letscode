@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM操作</title>
+    <script>
+        // bodyとscriptをつなぐ代表的な関数がgetElementById()
+
+        // 1から入力された数値までの値を加算する関数
+        function sum() {
+            // 入力された値を所得する
+            var v = document.getElementById("number").value;
+            var r = 0;
+            for (var i = 1 ; i <= v ; i++) {
+                r += i;
+            }
+            var s = "1から" + v + "の合計は" + r + "です";
+            // 結果を表示する
+            document.getElementById("result").textContent = s;
+        }
+    </script>
+</head>
+<body>
+    <!-- 入力 -->
+    <input id="number" />
+    <!-- ボタン：押下したら関数sum()実行 -->
+    <button onclick="sum()">合計</button>
+    <!-- 結果を表示するためのパラグラフ -->
+    <p id="result"></p>
+</body>
+</html>
