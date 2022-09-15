@@ -1,3 +1,4 @@
+// パラメータ実引数の説明
 // argument and parameter
 function f1(p) {  // p is a parameter.
     console.log(p);
