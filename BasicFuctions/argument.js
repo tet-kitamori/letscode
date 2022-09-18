@@ -1,5 +1,5 @@
-// パラメータ実引数の説明
-// argument and parameter
+// パラメータと実引数の説明
+// 関数定義の括弧中に記述した語がパラメータ
 function f1(p) {  // p is a parameter.
     console.log(p);
 }
