@@ -8,7 +8,7 @@ f1(16); // 関数呼び出しのために与えた値 16 が実引数(argument)
 f1(158);
 
 // 実引数の取得、実引数の個数
-function func0(a, b, c) {
+function func0(a, b, c=5) {
     console.log(arguments[0]);
     console.log(arguments[2]);
     console.log(arguments.length); // lengthは引数の個数を返すメソッド
