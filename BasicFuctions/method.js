@@ -12,17 +12,16 @@ class MyClass {
 const obj1 = new MyClass();
 console.log(obj1.method1());
 
-// メソッドは、オブジェクト定義中に定義指定も良い
+// メソッドは、オブジェクト定義中に定義しても良い
 obj2 = {
     prop1: 99,
     method1: function() {
         return this === obj2;
     },
     method2: function() {
-        return prop1;
+        return this.prop1;
     }
 }
 
-console.log(obj1.method1());
-console.log(obj1.method2());
-
+console.log(obj2.method1());
+console.log(obj2.method2());
