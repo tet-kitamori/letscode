@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Mine Land</title>
+    <title>Mine Detective</title>
     <meta charset="utf-8" />
     <style type="text/css">
         td.cell {
@@ -18,9 +18,11 @@
     "use strict";
     var W = 10, H = 10, BOMB = 10, cell = [], opened = 0;
 
+    // フォームがロードされたときに実行される初期化関数
     function init() {
         var main = document.getElementById("main");
 
+        // W x H の要素数を持った2次元のセルマトリクスを作成する
         for (var i = 0; i < H; i++) {
             cell[i] = [];
             var tr = document.createElement("tr");
@@ -35,7 +37,8 @@
             }
             main.appendChild(tr);
         }
-
+        // BOMB で決められた数だけ、乱数で（ｘ、ｙ）の組を作り、
+        // それに対応するセルを地雷があるものとしてフラグを立てる
         for (var i = 0; i < BOMB; i++) {
             while (true) {
                 var x = Math.floor(Math.random() * W);
@@ -49,6 +52,7 @@
         }
     }
 
+    // セル（ｘ、ｙ）の周囲にある地雷の数をカウントする
     function count(x, y) {
         var b = 0;
         for (var j = y - 1; j <= y + 1; j++) {
@@ -61,6 +65,7 @@
         return b;
     }
 
+    // オープン処理
     function open(x, y) {
         for (var j = y - 1; j <= y + 1; j++) {
             for (var i = x - 1; i <= x + 1; i++) {
@@ -85,13 +90,16 @@
         cell.className = "cell open";
         cell.opened = true;
         if (++opened >= (W * H - BOMB)) {
+            // 地雷がないセルがすべてオープンになったら成功
             document.getElementById("title").textContent = "Good Job!";
         }
     }
 
+    // マウスでセルをクリックした時の処理
     function click(e) {
         var src = e.currentTarget;
         if (src.bomb) {
+            // そのセルに爆弾があったら、ゲームエンド
             cell.forEach(function (tr) {
                 tr.forEach(function (td) {
                     if (td.bomb) {
@@ -101,6 +109,7 @@
             });
             document.getElementById("title").textContent = "Game Over";
         } else {
+            // そのセルに爆弾がなければ、オープン処理
             open(src.x, src.y);
         }
     }
@@ -108,7 +117,7 @@
 </head>
 
 <body onload="init()">
-    <h1 id="title">Mine Land</h1>
+    <h1 id="title">Mine Detective</h1>
     <table id="main" border="1"></table>
 </body>
 </html>
