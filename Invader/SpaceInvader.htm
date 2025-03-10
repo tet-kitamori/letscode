@@ -1,12 +1,16 @@
-﻿<!DOCTYPE html>
+﻿// スペースインベーダをJavaScriptを使って再現する。
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
+    <title>SpaceInvaderみたいなもの</title>
     <script type="text/javascript">
     "use strict";
 var ctx, ship, beam, aliens = [], bombs = [],
     score = 0, stage = 1, clock = 0, mainT = NaN, alienT = NaN;
 
+// ビーム
 function Beam() {
     this.x = 0;
     this.y = -100;
@@ -15,6 +19,7 @@ function Beam() {
     this.isEven = function () { return this.even; }
 }
 
+// エイリアンが落とす爆弾
 function Bomb() {
     this.x = 0;
     this.y = 600;
@@ -24,6 +29,7 @@ function Bomb() {
     this.isEven = function () { return this.even; }
 }
 
+// エイリアン
 function Alien(x, y, point, offset) {
     this.x = x;
     this.y = y;
@@ -32,6 +38,7 @@ function Alien(x, y, point, offset) {
     this.isEven = function () { return Alien.isEven; }
 }
 
+// 宇宙船
 function Ship() {
     this.x = 0;
     this.y = 550;
@@ -41,6 +48,7 @@ function Ship() {
     this.isEven = function () { return true; }
 }
 
+// ビットマップ
 var bitmap = {
     draw: function (ctx) {
         if (!this.strip) {
@@ -63,6 +71,7 @@ function rand(max) {
     return Math.floor(Math.random() * max);
 }
 
+// 初期化関数
 function init() {
     ctx = document.getElementById('canvas').getContext('2d');
     ctx.font = "20pt Arial";
@@ -96,6 +105,8 @@ function start() {
     }
 }
 
+// ゲーム内で使うキーは「右矢印」「左矢印」「スペース」の3つ
+// 矢印キーは宇宙船の左右移動、スペースキーはビームの発射
 function keyDown(evt) {
     if (evt.keyCode == 37) ship.moveL = true;
     if (evt.keyCode == 39) ship.moveR = true;
