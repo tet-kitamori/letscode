@@ -83,12 +83,18 @@
         }
 
         // キーイベントハンドラーの初期化
+        // キーが押下された時に、イベントのkeyCode属性を見てキーを認識する。
         window.addEventListener('keydown', function (e) {
             switch (e.keyCode) {
+                // 左矢印キー押下 
                 case 37: ship.keyL = true; break;
+                // 上矢印キー押下
                 case 38: ship.keyF = true; break;
+                // 右矢印キー押下
                 case 39: ship.keyR = true; break;
+                // 下矢印キー押下
                 case 40: ship.keyB = true; break;
+                // スペースキー押下
                 case 32: ship.keyH = true; break;
             }
         });
