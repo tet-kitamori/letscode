@@ -65,8 +65,10 @@
         }
     }
 
+    // 最大値=r の乱数（整数）を生成する。
     function rand(r) { return Math.floor(Math.random() * r) }
 
+    // 初期化関数：フォームがロードされたときに最初に実行される。
     function init() {
         ctx = document.getElementById('canvas').getContext('2d');
         ctx.font = "20pt Arial";
@@ -100,8 +102,10 @@
             }
         });
 
+        // 画面に配置する岩（アステロイド）を、乱数生成した位置情報を持たせて生成
         start();
 
+        // タイマーを50msec周期で設定して、周期ごとに関数mainloop()を実行される
         if (isNaN(timer)) {
             timer = setInterval(mainLoop, 50);
         }
@@ -123,6 +127,9 @@
         }
     }
 
+    // 周期的に実行するメイン処理本体
+    // ゲームで使用するキーは、「右矢印」「左矢印」「上矢印」「下矢印」「スペース」
+    // 4つの矢印キーにより宇宙船を移動させ、スペースキーで弾を発射して壊す。
     function mainLoop() {
         clock++;
 
@@ -208,6 +215,7 @@
             }
         });
 
+        // 画面を更新する
         draw();
     }
 
