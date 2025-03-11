@@ -1,5 +1,5 @@
 // パラメータと実引数の説明
-// 関数定義の括弧中に記述した語がパラメータ(parameter)
+// 関数定義の括弧中に記述した語がパラメータ(仮引数：parameter)
 function f1(p) {  // p is a parameter.
     console.log(p);
 }
@@ -12,9 +12,11 @@ function func0(a, b, c=5) {
     console.log(arguments[0]);
     console.log(arguments[2]);
     console.log(arguments.length); // lengthは引数の個数を返すメソッド
+    console.log(`function0  a:${a}, b:${b}, c:${c}`);
 }
 
 func0(10, 20, 30);
+func0(22, 33);
 
 // arguments.callee 呼び出された関数を取得するメソッド
 function func1() {
