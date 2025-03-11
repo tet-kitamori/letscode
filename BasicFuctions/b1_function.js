@@ -14,7 +14,7 @@ const f2 = function func2() {
 
 const f3 = function() {
     console.log("function expression: No name");
-} // 名前なし関数式（こういう使い方が多い)
+} // 名前なし関数式（こういう使い型が多い)
 
 func1();
 f2();
