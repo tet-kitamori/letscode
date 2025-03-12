@@ -22,6 +22,7 @@ obj1.f.call(obj3);
 obj1.f.apply(obj3);
 
 // function で定義された関数とアロー関数では this が異なる
+// アロー関数内の this は関数定義時の this
 const obj4 = {
     method1: function() {
         return this === obj4;
