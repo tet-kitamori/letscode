@@ -1,4 +1,4 @@
-# introJavaScript
+# HTML intro JavaScript
 
 JavaScriptの文法を理解するためのHTMLファイル
 

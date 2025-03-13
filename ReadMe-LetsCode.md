@@ -31,7 +31,7 @@ LetCodeリポジトリは、HTML関連の初級スキルを理解・習得する
 
 [HTML-intro-JavaScript](HTML-intro-JavaScript/ReadMe-HTML-intro-JavaScript.md)
 
-[HTML-ThirdStep-DOM](HTML-ThirdStep-DOM/ReadMe-HTML-TfirdStep-DOM.md)
+[HTML-ThirdStep-DOM](HTML-ThirdStep-DOM/ReadMe-HTML-ThirdStep-DOM.md)
 
 [JsBasicFunctions](JsBasicFunctions/ReadMe-JsBasicFunctions.md)
 

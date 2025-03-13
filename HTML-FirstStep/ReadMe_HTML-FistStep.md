@@ -1,4 +1,4 @@
-# practiceHTML
+# HTML First Step
 
 このフォルダに格納されているフォルダは、HTMLの基礎を理解するための
 ファイルです。

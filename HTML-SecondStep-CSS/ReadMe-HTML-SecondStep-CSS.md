@@ -1,4 +1,4 @@
-# WebTechFirst
+# HTML Second Step : CSS
 
 HTMLコースの2限目程度の内容
 
