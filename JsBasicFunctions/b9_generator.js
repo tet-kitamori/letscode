@@ -1,3 +1,6 @@
+// ジェネレータ関数は、next()メソッドを呼び出すと yield で設定した
+// 値を順番に返す。　最後までいったら、あとは undefined。
+
 function* gen1() {
     yield 1;
     yield 2;
@@ -29,7 +32,8 @@ function* gen3() {
 
 const genobj3 = gen3();
 
+// return メソッドを呼び出すと実行後に終わる。
 console.log(genobj3.next());
 console.log(genobj3.return(10));
 console.log(genobj3.next());
-
+console.log(genobj3.next(6));
