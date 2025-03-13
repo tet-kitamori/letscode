@@ -1,0 +1,38 @@
+# About LetCode
+
+LetCodeリポジトリは、HTML関連の初級スキルを理解・習得するための
+サンプルコードを集めたものです。
+
+以下のようなフォルダがあります。
+
+1. HTML-FirstStep
+2. HTML-SecondStep-CSS
+3. HTML-intro-JavaScript
+4. HTML-ThirdStep-DOM
+5. JsBasicFunctions
+6. Making-tetris-step-by-step
+7. Game-Asteroid-html
+8. Game-Blocks-html
+9. Game-Invader-html
+10. Game-MineSweeper-html
+11. images
+
+また、Markdownドキュメントの書き方について簡単に説明したファイル
+
+[マークダウン記法について](About_MarkDown.md)
+
+もあります。
+
+## 各フォルダの内容
+
+[HTML-FirstStep](HTML-FirstStep/ReadMe_HTML-FistStep.md)
+[HTML-SecondStep-CSS](HTML-SecondStep-CSS/ReadMe-HTML-SecondStep-CSS.md)
+[HTML-intro-JavaScript](HTML-intro-JavaScript/ReadMe-HTML-intro-JavaScript.md)
+[HTML-ThirdStep-DOM](HTML-ThirdStep-DOM/ReadMe-HTML-TfirdStep-DOM.md)
+[JsBasicFunctions](JsBasicFunctions/ReadMe-JsBasicFunctions.md)
+[Making-tetris-step-by-step](Making-tetris-step-by-step/ReadMe-Making-tetris-step-by-step.md)
+
+その他のフォルダは、ブラウザ上のゲームHTMLです。
+
+このリポジトリのソースは、副作用のないものなので安心して動かせると思います。
+個人の学習用にご利用ください。
