@@ -7,11 +7,10 @@ LetCodeリポジトリは、HTML関連の初級スキルを理解・習得する
 
 1. HTML-FirstStep
 2. HTML-SecondStep-CSS
-3. HTML-intro-JavaScript
-4. HTML-ThirdStep-DOM
-5. JsBasicFunctions
-6. Making-tetris-step-by-step
-7. images
+3. HTML-ThirdStep-DOM
+4. JsBasicFunctions
+5. Making-tetris-step-by-step
+6. images
 
 また、Markdownドキュメントの書き方について簡単に説明したファイル
 
@@ -24,8 +23,6 @@ LetCodeリポジトリは、HTML関連の初級スキルを理解・習得する
 [HTML-FirstStep](HTML-FirstStep/ReadMe_HTML-FistStep.md)
 
 [HTML-SecondStep-CSS](HTML-SecondStep-CSS/ReadMe-HTML-SecondStep-CSS.md)
-
-[HTML-intro-JavaScript](HTML-intro-JavaScript/ReadMe-HTML-intro-JavaScript.md)
 
 [HTML-ThirdStep-DOM](HTML-ThirdStep-DOM/ReadMe-HTML-ThirdStep-DOM.md)
 
