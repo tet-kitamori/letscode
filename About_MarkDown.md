@@ -137,3 +137,141 @@ GFM では表が作れます。
     <p id="result"></p>
 </body>
 ```
+
+### 数式の表示
+
+数式の表現には、MathJax と呼ばれるライブラリが使われる。
+
+| 項目 | 記法 | 記述例 | 表示 |
+|--------|--------------|------------------------|------------|
+| 加算 | + | `a + b` | a + b |
+| 減算 | - | `a - b` | a - b |
+| 乗算 | `\times` | `a \times b` | a \times b |
+| 乗算 | `\cdot` | `a \cdot b` | a \cdot b |
+| 除算 | `\div` | `a \div b` | a \div b |
+| 除算 | / | `a / b` | a / b |
+| 累乗 | ^ | `x^3` | x^3 |
+| 階乗 | ! | `n!` | n! |
+| 平方根 | `\sqrt` | `\sqrt{2}` | \sqrt{2} |
+| 累乗根 | `\sqrt[n]` | `\sqrt[3]{2}` | \sqrt[3]{2} |
+| 下付き文字 | _ | `x_i` | x_i |
+| プラスマイナス | `\pm` | `\pm 3` | \pm 3 |
+| 分数 | `\frac` | `\frac{1}{x+2}` | \frac{1}{x+2} |
+| 分数大 | `\dfrac` | `\dfrac{1}{x+2}` | \dfrac{1}{x+2} |
+| 括弧 | `\left( \right)` | `\left( \dfrac{1}{x+2} \right)^2` | \left( \dfrac{1}{x+2} \right)^2 |
+|--------|--------------|------------------------|------------|
+| 循環小数 | `\dot` | `0.\dot{6}` | 0.\dot{6} |
+| 無限小数 | `\ldots` | `\pi = 3.14\ldots` | \pi = 3.14\ldots |
+| 無限大 | `\infty` | `\infty` | \infty |
+|--------|--------------|------------------------|------------|
+| 対数 | `\log` | `\log x` | \log x |
+| 10の対数 | `\log_{10}` | `\log_{10} x` | \log_{10} x |
+| 三角関数 | `\sin` | `\sin x \cos y \tan z`  | \sin x \cos y \tan z |
+|--------|--------------|------------------------|------------|
+| 不等号 | `\neq` | `x \neq y` | x \neq y |
+| ほぼ等しい | `\fallingdotseq` | `x \fallingdotseq y` | x \fallingdotseq y |
+| 大 | `\gt` | `x \gt y` | x \gt y |
+| 以上 | `\geqq` | `x \geqq y` | x \geqq y |
+| 小 | `\lt` | `x \lt y` | x \lt y |
+| 以下 | `\leqq` | `x \leqq y` | x \leqq y |
+| 非常に大 | `\gg` | `x \gg y` | x \gg y |
+| 非常に小 | `\ll` | `x \ll y` | x \ll y |
+
+#### 総和、総乗
+
+総和は、`\sum_{i=1}^{n}x_i` とすると、\sum_{i=1}^{n}x_i
+
+`\displaystyle \sum_{i=1}^{n}x_i` とすると、\displaystyle \sum_{i=1}^{n}x_i
+
+ 総乗は、`\plod_{i=1}^{n}x_i` とすると、 \plod_{i=1}^{n}x_i
+
+ `\displaystyle \plod_{i=1}^{n}x_i` とすると、 \displaystyle \plod_{i=1}^{n}x_i
+
+ #### 積分、極限
+
+ 積分は、`\int_{0}^{\infty} f(x) dx` とすると、\int_{0}^{\infty} f(x) dx
+
+ `\displaystyle \int_{0}^{\infty} f(x) dx` とすると、\displaystyle \int_{0}^{\infty} f(x) dx
+
+ 極限は、`\lim_{x \to \infty} f(x)` とすると、\lim_{x \to \infty} f(x)
+
+ `\displaystyle \lim_{x \to \infty} f(x)` とすると、\displaystyle \lim_{x \to \infty} f(x)
+
+ #### 配列、行列
+
+配列は、`\begin{array}{r1} abc & 1234 \\ def & 5678 \end{array}` とすると、
+\begin{array}{r1} abc & 1234 \\ def & 5678 \end{array}
+
+括弧で囲んだ行列は、`\begin{pmatrix} A & B \\ C & D \end{pmatrix}` とすると、
+\begin{pmatrix} A & B \\ C & D \end{pmatrix}
+
+カギ括弧で囲んだ行列は、`\begin{bmatrix} A & B \\ C & D \end{bmatrix}` とすると、
+\begin{bmatrix} A & B \\ C & D \end{bmatrix}
+
+行列式は、`\begin{vmatrix} A & B \\ C & D \end{vmatrix}` とすると、
+\begin{vmatrix} A & B \\ C & D \end{vmatrix}
+
+#### 方程式
+
+方程式を並べて表示するのは、`\begin{eqnarray} a + b = c \\ a + d = e \end{eqnarray}`
+\begin{eqnarray} a + b = c \\ a + d = e \end{eqnarray}
+
+改行幅を調整するには、'\\'の後に、'[5px]'などと指定する。
+
+連立方程式を表示するには、
+```
+\begin{eqnarray}
+  \left{
+    \begin{array}{l}
+      x + 2y = 124 \\
+      2x + 5y = 286
+    \end{array}
+  \right.
+\end{eqnarray}
+```
+\begin{eqnarray}
+  \left{
+    \begin{array}{l}
+      x + 2y = 124 \\
+      2x + 5y = 286
+    \end{array}
+  \right.
+\end{eqnarray}
+
+### フォント、文字
+
+| 項目 | 記法 | 記述例 | 表示 |
+|--------|--------------|------------------------|------------|
+| フォント色 | `\color` | `\color{red}{x + y}`  | \color{red}{x + y} |
+| 背景色 | `\colorbox` | `\colorbox{green}{x + y}` | \colorbox{green}{x + y} |
+| 文字大 | `\large` | `\large{XYZ}` | \large{XYZ} |
+| 文字普通 | `\normalsize` | `\normalsize{XYZ}` | \normalsize{XYZ} |
+| 文字小 | `\small` | `\small{XYZ}` | \small{XYZ} |
+| 文字極小 | `\scriptsize` | `\scriptsize{XYZ}` | \scriptsize{XYZ} |
+| ローマン | `\mathrm` | `\mathrm{XYZ}` | \mathrm{XYZ} |
+| 太字 | `\mathbf` | `\mathbf{XYZ}` | \mathbf{XYZ} |
+| イタリック | `\mathit` | `\mathit{XYZ}` |\mathit{XYZ} |
+| 中抜き | `\mathbb` | `\mathbb{XYZ}` | \mathbb{XYZ} |
+|--------|--------------|------------------------|------------|
+| アルファ | `\alpha` | `\alpha` | \alpha |
+| ベータ | `\beta` | `\beta` | \beta |
+| ガンマ | `\gamma` | `\gamma` | \gamma |
+| デルタ | `\delta` | `\delta` | \delta |
+| イプシロン | `\varepsilon` | `\varepsilon` | \varepsilon |
+| ゼータ | `\zeta` | `\zeta` | \zeta |
+| イータ | `\eta` | `\eta` | \eta |
+| シータ | `\theta` | `\theta` | \theta |
+| ラムダ | `\lambda` | `\lambda` | \lambda |
+| ミュー | `\mu` | `\mu` | \mu |
+| ニュー | `\nu` | `\nu` | \nu |
+| グザイ | `\xi` | `\xi` | \xi |
+| パイ | `\pi` | `\pi` | \pi |
+| ロー | `\rho` | `\rho` | \rho | 
+| シグマ | `\sigma` | `\sigma` | \sigma |
+| タウ | `\tau` | `\tau` | \tau | 
+| ユプシロン | `\upsilon` | `\upsilon` | \upsilon | 
+| ファイ | `\phi` | `\phi` | \phi |
+| ファイ | `\varphi` | `\varphi` | \varphi |
+| カイ | `\chi` | `\chi` | \chi |
+| プサイ | `\psi` | `\psi` | \psi |
+| オメガ | `\omega` | `\omega` | \omega |
